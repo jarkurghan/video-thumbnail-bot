@@ -1,4 +1,4 @@
-import { integer, pgTable, text, varchar, uniqueIndex, timestamp } from "drizzle-orm/pg-core";
+import { integer, pgTable, text, varchar, uniqueIndex, timestamp, boolean } from "drizzle-orm/pg-core";
 
 export const vtu = pgTable(
     "video_thumbnail_users",
@@ -9,6 +9,7 @@ export const vtu = pgTable(
         last_name: text("last_name"),
         username: text("username"),
         count: integer("count"),
+        is_blocked: boolean("is_blocked"),
         created_at: timestamp("created_at").defaultNow().notNull(),
         updated_at: timestamp("updated_at")
             .defaultNow()

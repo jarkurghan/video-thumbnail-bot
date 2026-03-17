@@ -15,6 +15,12 @@ export const bot = new Bot<MyContext>(BOT_TOKEN);
 bot.use(session({ initial }));
 bot.api.config.use(autoRetry());
 
+// Faqat shaxsiy (private) chatlarda ishlashi kerak
+bot.use(async (ctx, next) => {
+    if (ctx.chat?.type !== "private") return;
+    return next();
+});
+
 bot.command("start", registerStartCommand);
 bot.on("message:video", messageVideoHandler);
 bot.on("message:photo", messagePhotoHandler);

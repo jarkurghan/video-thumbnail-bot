@@ -39,7 +39,7 @@ export async function saveUser(ctx: CTX, data?: SaveUserData): Promise<User[]> {
             const userlink = userLink(userData);
             const msg =
                 `🆕 Yangi foydalanuvchi:\n\n👤 Ism: ${userlink}\n🔗 Username: ${username}\n` +
-                `🆔 ID: <code>${user.id}</code>\n🚪 Source: ${utm}\n🤖 Bot: @video_sarlavha_bot`;
+                `🆔 ID: <code>${user.id}</code>\n🚪 Source: ${utm}\n🤖 Bot: @video_thumbs_bot`;
             await bot.api.sendMessage(ADMIN_CHAT, msg, { parse_mode: "HTML" });
         }
 

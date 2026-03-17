@@ -9,6 +9,6 @@ export const MESSAGES = {
     SEND_PHOTO: "🖼️ Rasm yuboring!",
     VIDEO_SAVED: "✅ Video saqlandi, rasm yuboring!",
     PHOTO_SAVED: "✅ Rasm saqlandi, video yuboring!",
-    SUCCESS_TITLE: "@video_sarlavha_bot orqali video thumbnail rasmi o'zgartirildi",
+    SUCCESS_TITLE: "@video_thumbs_bot orqali video thumbnail rasmi o'zgartirildi",
     ERROR: "❌ Xatolik yuz berdi, keyinroq qayta urinib ko'ring.",
 };

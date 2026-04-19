@@ -54,7 +54,7 @@ export async function changeStatus(ctx: Context, status: UserStatus): Promise<vo
                 `👤 Ism: ${userlink}\n` +
                 `🆔 User ID: <code>${tg_id}</code>\n` +
                 `🔦 Yangi status: ${status}\n` +
-                `🤖 Bot: @bugungi_namoz_bot`;
+                `🤖 Bot: @video_thumbs_bot`;
             await sendAdmin(msg);
         }
     } catch (error) {

@@ -1,6 +1,7 @@
 import { Context, type SessionFlavor } from "grammy";
 
 import { ParseMode } from "@grammyjs/types";
+import { USER_STATUSES } from "./constants";
 import { CallbackQueryContext } from "grammy";
 import { CommandContext } from "grammy";
 import { vtu } from "../db/schema";
@@ -20,6 +21,7 @@ export type SaveUserData = { today_count: number; total_count: number; utm?: str
 export type CTX = CommandContext<Context> | CallbackQueryContext<Context> | Context | MyContext;
 
 export type LogOptions = { parse_mode?: ParseMode; reply_to_message_id?: number };
+export type ErrorLogOptions = { ctx?: Context; event: string; error: unknown; reply_to_message_id?: number; parse_mode?: ParseMode };
 
 export type VideoThumbnailUserSelect = typeof vtu.$inferSelect;
 export type VideoThumbnailUserInsert = typeof vtu.$inferInsert;
@@ -36,6 +38,7 @@ export function mapDbUserToUser(row: VideoThumbnailUserSelect): User {
     };
 }
 
+export type UserStatus = (typeof USER_STATUSES)[number];
 export type Status = "new" | "active" | "inactive" | "deleted_account" | "has_blocked" | "other";
 
 export interface SessionData {

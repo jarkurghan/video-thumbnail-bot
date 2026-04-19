@@ -1,5 +1,6 @@
 import { BOT_TOKEN } from "./utils/constants";
 import { Bot, session, webhookCallback } from "grammy";
+import { registerChatMember } from "./handlers/register-chat-member";
 import { registerStartCommand } from "./handlers/register-start-command";
 import { registerErrorHandler } from "./handlers/register-error-handler";
 import { messageVideoHandler } from "./handlers/message-video";
@@ -22,9 +23,13 @@ bot.use(async (ctx, next) => {
 });
 
 bot.command("start", registerStartCommand);
+
 bot.on("message:video", messageVideoHandler);
 bot.on("message:photo", messagePhotoHandler);
 bot.on("message", messageHandler);
+
+bot.on("my_chat_member", registerChatMember);
+
 bot.catch(registerErrorHandler);
 
 export const handleUpdate = webhookCallback(bot, "hono");

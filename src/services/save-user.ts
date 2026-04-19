@@ -15,6 +15,11 @@ export function userLink(user: User): string {
     return user.username ? `<a href="tg://resolve?domain=${user.username}">${fullName}</a>` : `<a href="tg://user?id=${user.tg_id}">${fullName}</a>`;
 }
 
+export function groupLink(chat: { id: number; title?: string; username?: string | null }): string {
+    const name = chat.title || "Noma'lum";
+    return chat.username ? `<a href="https://t.me/${chat.username}">${name}</a>` : name;
+}
+
 export async function saveUser(ctx: CTX, data?: SaveUserData): Promise<User[]> {
     const user = ctx.from;
     if (!user) return [];

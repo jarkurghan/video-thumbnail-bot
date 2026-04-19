@@ -4,7 +4,7 @@ import { saveUser } from "../services/save-user";
 import { userLink } from "../services/save-user";
 import { MESSAGES } from "../utils/constants";
 import { MyContext } from "../utils/types";
-import { sendLog } from "../services/log";
+import { sendErrorLog, sendLog } from "../services/log";
 
 export async function messagePhotoHandler(ctx: MyContext) {
     try {
@@ -74,21 +74,6 @@ export async function messagePhotoHandler(ctx: MyContext) {
         }
     } catch (error) {
         await ctx.reply(MESSAGES.ERROR).catch((e) => console.log(e));
-
-        const user = {
-            tg_id: ctx.from?.id || "",
-            first_name: ctx.from?.first_name || "",
-            last_name: ctx.from?.last_name || "",
-            username: ctx.from?.username || "",
-        };
-
-        if (error instanceof GrammyError) {
-            const description = error.description || "";
-            await sendLog(`Xabar yuborishda xatolik\n\n User: (${userLink(user)})\nError type: Grammy Error\nDescription: ${description}`);
-        } else if (error instanceof Error) {
-            await sendLog(`Xabar yuborishda xatolik\n\n User: (${userLink(user)})\nError type: Error\nError message: ${error.message}`);
-        } else {
-            await sendLog(`Xabar yuborishda xatolik\n\n User: (${userLink(user)})\nError type: Unknown Error\nError message: ${String(error)}`);
-        }
+        sendErrorLog({ ctx, event: "message_photo", error });
     }
 }

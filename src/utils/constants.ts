@@ -3,6 +3,8 @@ export const ADMIN_CHAT = process.env.ADMIN_CHAT_ID || "";
 export const LOG_CHAT = process.env.LOG_CHAT_ID || "";
 export const ADMIN_ID = process.env.ADMIN_PRIVATE_CHAT_ID || "";
 
+export const USER_STATUSES = ["active", "deleted_account", "has_blocked", "other"] as const;
+
 export const MESSAGES = {
     START: "👋 Xush kelibsiz!\n\nMenga video va rasm yuboring, men siz yuborgan video uchun thumbnail rasmini o'zgartiraman!",
     SEND_VIDEO: "🎥 Video yuboring!",

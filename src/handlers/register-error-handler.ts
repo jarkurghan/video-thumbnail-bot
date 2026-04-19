@@ -1,7 +1,8 @@
 import type { BotError, Context } from "grammy";
-import { sendLog } from "../services/log";
+import { sendErrorLog } from "../services/log";
 
-export async function registerErrorHandler(err: BotError<Context>) {
-    if (err.error instanceof Error) await sendLog(err.error.message);
-    else await sendLog(String(err.error));
+export async function registerErrorHandler(error: BotError<Context>) {
+    const ctx = error.ctx;
+    const event = `Bot global xatolik (${ctx.update.update_id})`;
+    await sendErrorLog({ ctx, event, error });
 }
